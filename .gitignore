@@ -1,0 +1,44 @@
+# --- Composer ---
+/vendor/
+
+# --- Drupal docroot (recommended-project: /web) ---
+/web/core/
+/web/libraries/
+/web/modules/contrib/
+/web/profiles/contrib/
+/web/themes/contrib/
+
+/web/sites/*/files/
+/web/sites/*/private/
+/web/sites/*/files/css/
+/web/sites/*/files/js/
+
+# Site-specific services/settings (don’t commit secrets)
+# Keep example files for reference.
+/web/sites/*/services*.yml
+/web/sites/*/settings*.php
+!/web/sites/*/example.settings.local.php
+!/web/sites/*/example.sites.php
+
+# --- Drush ---
+/drush/commands/contrib/
+/drush/contrib/
+
+# --- Node builds inside custom themes (if you use them) ---
+/web/themes/custom/*/node_modules/
+/web/themes/custom/*/.cache/
+/web/themes/custom/*/dist/
+
+# --- PHPUnit/OS/IDE junk ---
+.phpunit.result.cache
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# --- DDEV (commit .ddev/, ignore transient stuff only) ---
+# Keep .ddev/config.yaml, docker-compose.*.yaml, commands/, etc. in Git.
+/.ddev/.downloads/
+/.ddev/.import-db/
+/.ddev/db_snapshots/
+/.ddev/ssh-auth-keys/
