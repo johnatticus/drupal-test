@@ -1,0 +1,39 @@
+{# templates/views-view-unformatted--blog-carousel--block-1.html.twig #}
+{# Renders the Blog Carousel view block as a Bootstrap carousel #}
+
+{% set carousel_id = 'blogCarousel' %}
+
+<div id="{{ carousel_id }}" class="carousel slide carousel-dark" data-bs-ride="carousel" data-bs-interval="5000">
+  {# Indicators #}
+  <div class="carousel-indicators">
+    {% for row in rows %}
+      <button
+        type="button"
+        data-bs-target="#{{ carousel_id }}"
+        data-bs-slide-to="{{ loop.index0 }}"
+        class="{{ loop.first ? 'active' : '' }}"
+        aria-current="{{ loop.first ? 'true' : 'false' }}"
+        aria-label="Slide {{ loop.index }}"
+      ></button>
+    {% endfor %}
+  </div>
+
+  {# Slides #}
+  <div class="carousel-inner">
+    {% for row in rows %}
+      <div class="carousel-item {{ loop.first ? 'active' : '' }}">
+        {{ row.content }}
+      </div>
+    {% endfor %}
+  </div>
+
+  {# Controls #}
+  <button class="carousel-control-prev" type="button" data-bs-target="#{{ carousel_id }}" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#{{ carousel_id }}" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

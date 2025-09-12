@@ -1,0 +1,16 @@
+name: My UI Suite Bootstrap Subtheme
+type: theme
+core_version_requirement: ^10 || ^11
+base theme: ui_suite_bootstrap
+
+libraries:
+  - my_usbs/global
+
+regions:
+  header: Header
+  highlighted: Highlighted
+  content_top: Content top
+  content: Content
+  sidebar_first: Sidebar first
+  sidebar_second: Sidebar second
+  footer: Footer

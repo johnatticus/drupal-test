@@ -1,0 +1,34 @@
+{# templates/views-view-fields--blog-carousel--block-1.html.twig #}
+{# Renders ONE slide as a Bootstrap card. #}
+
+{% set img   = fields.field_hero_image is defined ? fields.field_hero_image.content : null %}
+{% set title = fields.title is defined ? fields.title.content : '' %}
+{% set body  = fields.body is defined ? fields.body.content : '' %}
+
+<div class="card h-100">
+  {% if img %}
+    <div class="card-img-top overflow-hidden">
+      {{ img }}
+    </div>
+  {% endif %}
+
+  <div class="card-body">
+    {% if title %}<h5 class="card-title">{{ title }}</h5>{% endif %}
+    {% if body %}<p class="card-text">{{ body }}</p>{% endif %}
+  </div>
+
+  {# Use the Link to Content field's rendered anchor and add Bootstrap classes #}
+  {% if fields.view_node is defined %}
+    <div class="card-footer bg-transparent border-0">
+      {{ fields.view_node.content
+         | replace({'<a ': '<a class="btn btn-primary" '})
+         | replace({'>View</a>': '>Read more</a>'})
+         | raw
+      }}
+    </div>
+  {% else %}
+    <div class="card-footer bg-transparent border-0">
+      <a class="btn btn-primary" href="#">Read more</a>
+    </div>
+  {% endif %}
+</div>

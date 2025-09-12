@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+body {
+  font-family: "Roboto", sans-serif;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Give carousel items a consistent look */
+#blogCarousel .carousel-item {
+  padding: 0.75rem;
+}
+
+#blogCarousel img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 1rem;
+}
+
+/* Make hero images render properly in the card header */
+#blogCarousel .card-img-top img {
+  width: 100%;
+  height: 340px; /* pick 260–420px to taste */
+  object-fit: cover; /* crops tall images instead of stretching */
+  display: block;
+}
+
+/* Nice spacing and readable body */
+#blogCarousel .card {
+  border-radius: 0.5rem;
+}
+#blogCarousel .card-body {
+  padding: 1rem;
+}
+
+/* Keep indicators/controls visible */
+#blogCarousel .carousel-control-prev,
+#blogCarousel .carousel-control-next {
+  z-index: 1;
+  width: 10%; /* make controls less wide */
+  filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.5));
+}
+
+#blogCarousel .carousel-indicators {
+  z-index: 5;
+}
+
+/* Ensure the card footer (Read more) sits above the controls */
+#blogCarousel .card-footer {
+  position: relative;
+  z-index: 2;
+}
+
+/* Let images fill the card top nicely (BS5 utility used above) */
+.object-fit-cover {
+  object-fit: cover;
+}
