@@ -1,0 +1,22 @@
+{# Bootstrap navbar wrapper for Main navigation #}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+
+    <a class="navbar-brand d-flex align-items-center gap-2" href="{{ path('<front>') }}">
+      {# Show logo if available, otherwise site name #}
+      {% if brand_logo_url %}
+        <img src="{{ brand_logo_url }}" alt="{{ brand_site_name }}" style="height:32px;width:auto;" />
+      {% endif %}
+      <span>{{ brand_site_name }}</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      {{ content }}
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,42 @@
+<?php
+
+function my_usbs_preprocess_block(array &$variables) {
+  $plugin_id = $variables['elements']['#plugin_id'] ?? ($variables['plugin_id'] ?? '');
+
+  // Only for the Main navigation block (machine name: main).
+  if ($plugin_id !== 'system_menu_block:main') {
+    return;
+  }
+
+  // Site name.
+  $variables['brand_site_name'] = \Drupal::config('system.site')->get('name');
+
+  // Logo from theme settings (either logo.url or logo.path).
+  $logo_url = '';
+  $url  = theme_get_setting('logo.url',  'my_usbs') ?: '';
+  $path = theme_get_setting('logo.path', 'my_usbs') ?: '';
+
+  if ($url) {
+    $logo_url = $url;
+  } elseif ($path) {
+    if (strpos($path, 'public://') === 0 || strpos($path, 'private://') === 0) {
+      $logo_url = \Drupal::service('file_url_generator')->generateString($path);
+    } else {
+      $logo_url = $path;
+    }
+  }
+
+  // Fallback to files in the theme root.
+  if (!$logo_url) {
+    $theme_path = drupal_get_path('theme', 'my_usbs');
+    foreach (['logo.svg', 'logo.png', 'jhfavicon.png'] as $candidate) {
+      $abs = DRUPAL_ROOT . '/' . $theme_path . '/' . $candidate;
+      if (file_exists($abs)) {
+        $logo_url = base_path() . $theme_path . '/' . $candidate;
+        break;
+      }
+    }
+  }
+
+  $variables['brand_logo_url'] = $logo_url; // empty if none
+}
