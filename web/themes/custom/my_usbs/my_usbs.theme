@@ -1,6 +1,34 @@
 <?php
 
-function my_usbs_preprocess_block(array &$variables) {
+/**
+ * Add page template suggestions based on the URL alias.
+ * e.g. /about            -> page--about.html.twig
+ *      /contact-us       -> page--contact-us.html.twig
+ *      /company/about-us -> page--company--about-us.html.twig
+ */
+function my_usbs_theme_suggestions_page_alter(array &$suggestions, array $variables)
+{
+  // Current internal path, e.g. /node/8
+  $current_path = \Drupal::service('path.current')->getPath();
+
+  // Public alias, e.g. /contact-us
+  $alias = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+
+  $alias = trim($alias, '/');
+  if ($alias === '') {
+    return;
+  }
+
+  // Convert alias to a safe suggestion: replace "/" with "__", then sanitize.
+  // (Drupal maps "__" to "--" in filenames.)
+  $sanitized = \Drupal\Component\Utility\Html::getClass(str_replace('/', '__', $alias));
+
+  // Add suggestion: page__{sanitized}  -> page--{sanitized}.html.twig
+  $suggestions[] = 'page__' . $sanitized;
+}
+
+function my_usbs_preprocess_block(array &$variables)
+{
   $plugin_id = $variables['elements']['#plugin_id'] ?? ($variables['plugin_id'] ?? '');
 
   // Only for the Main navigation block (machine name: main).

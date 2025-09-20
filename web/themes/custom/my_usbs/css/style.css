@@ -27,6 +27,33 @@ a:hover {
   text-decoration: underline;
 }
 
+/* Active link color (already) */
+.navbar.navbar-light {
+  --bs-navbar-active-color: #0d6efd;
+}
+.navbar.navbar-dark {
+  --bs-navbar-active-color: #0d6efd;
+}
+
+/* NEW: lighter hover color */
+.navbar.navbar-light {
+  --bs-navbar-hover-color: #3b8eff;
+} /* lighter blue for light navs */
+.navbar.navbar-dark {
+  --bs-navbar-hover-color: #66b2ff;
+} /* tweak if you switch to dark */
+
+/* Bold active link + remove underline for all states */
+.navbar .nav-link.active {
+  font-weight: 600;
+}
+.navbar .nav-link,
+.navbar .nav-link:hover,
+.navbar .nav-link:focus,
+.navbar .nav-link.active {
+  text-decoration: none;
+}
+
 /* Give carousel items a consistent look */
 #blogCarousel .carousel-item {
   padding: 0.75rem;

@@ -1,0 +1,46 @@
+{# page--contact.html.twig #}
+<div class="page-contact">
+  {{ page.header }}
+
+  <main role="main">
+    <div class="container py-5">
+      <h1 class="display-4 mb-4">{{ node is defined ? node.label : 'Contact' }}</h1>
+
+      <div class="row g-5">
+        <div class="col-lg-6">
+          <div class="card p-4 h-100">
+            <h2 class="h4 mb-3">Get in touch</h2>
+            <ul class="list-unstyled mb-0">
+              <li><strong>Email:</strong> you@example.com</li>
+              <li><strong>Phone:</strong> (555) 555-5555</li>
+              <li><strong>Hours:</strong> Mon–Fri, 9–5</li>
+              <li><strong>Address:</strong> 123 Sample St, City</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card p-4 h-100">
+            <h2 class="h4 mb-3">Send a message</h2>
+
+            {# Option A: Webform embed (recommended) #}
+            {# Requires Twig Tweak + a webform with id "contact_us" #}
+            {{ drupal_entity('webform', 'contact_us') }}
+
+            {# Option B: show body/fields if you prefer editing content #}
+            {# {{ content.body }} #}
+          </div>
+        </div>
+      </div>
+
+      {# Optional map, full-width #}
+      <div class="container-fluid px-0 mt-5">
+        <div class="ratio ratio-16x9">
+          <iframe src="https://www.google.com/maps?q=New+York&output=embed" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  {{ page.footer }}
+</div>
