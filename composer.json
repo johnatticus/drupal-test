@@ -61,12 +61,14 @@
         "drupal/pathauto": "^1.13",
         "drupal/schema_metatag": "^3.0",
         "drupal/token": "^1.15",
+        "drupal/twig_tweak": "^3",
         "drupal/ui_examples": "^1.0",
         "drupal/ui_patterns": "^2.0",
         "drupal/ui_styles": "^1.16",
         "drupal/ui_suite_bootstrap": "^5.1@alpha",
         "drupal/upgrade_status": "^4.3",
-        "drupal/webform": "^6.2",
+        "drupal/webform": "^6",
+        "drupal/webform_ui": "^6",
         "drush/drush": "^13.3"
     },
     "conflict": {

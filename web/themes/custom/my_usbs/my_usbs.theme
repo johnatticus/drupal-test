@@ -8,22 +8,20 @@
  */
 function my_usbs_theme_suggestions_page_alter(array &$suggestions, array $variables)
 {
-  // Current internal path, e.g. /node/8
-  $current_path = \Drupal::service('path.current')->getPath();
+  if (!isset($variables['node']) || !$variables['node'] instanceof NodeInterface) {
+    return; // Only act on node pages.
+  }
 
-  // Public alias, e.g. /contact-us
-  $alias = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
-
+  $nid   = $variables['node']->id();
+  $path  = "/node/$nid";
+  $alias = \Drupal::service('path_alias.manager')->getAliasByPath($path); // e.g. /contact or /about-us
   $alias = trim($alias, '/');
   if ($alias === '') {
     return;
   }
 
-  // Convert alias to a safe suggestion: replace "/" with "__", then sanitize.
-  // (Drupal maps "__" to "--" in filenames.)
-  $sanitized = \Drupal\Component\Utility\Html::getClass(str_replace('/', '__', $alias));
-
-  // Add suggestion: page__{sanitized}  -> page--{sanitized}.html.twig
+  // /company/about-us  -> page--company--about-us.html.twig
+  $sanitized = Html::getClass(str_replace('/', '__', $alias));
   $suggestions[] = 'page__' . $sanitized;
 }
 
